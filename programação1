@@ -1,0 +1,375 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include <math.h>
+
+void limpar();
+void pedra();
+void papel();
+void tesoura();
+void escolhas();
+void rodadas();
+void vez(char *jogador, int *a);
+void mostrarJogada(char *jogador, int jogada);
+
+int main()
+{
+    setlocale(LC_ALL, "");
+
+    int Menu = 0, Jogos, jogada1, jogada2, contadorJ1 = 0, contadorJ2 = 0, opcaoMenu, JogadaMaquina, contadorR = 1;
+
+    char jogador[3][100];
+
+    //MENU INICIAL
+    printf("Bem vindo ao Pedra, Papel e Tesoura virtual, pressione qualquer tecla para iniciar:\n");
+
+    getch();
+    limpar();
+
+    //CASO O JOGADOR DIGITE QUALQUER NUMERO DIFERENTE DE 1 E 2
+    while(Menu != 1 && Menu != 2)
+    {
+        printf("Jogar - 1:\n");
+        printf("Sair -- 2:\n");
+        scanf("%d", &Menu);
+
+        //FINALIZA O PROGRAMA
+        if(Menu == 2)
+        {
+            printf("Programa finalizado.");
+            return 0;
+        }
+
+        //LIMPA A TELA
+        limpar();
+    }
+
+    printf("Jogador contra Jogador - 1\n");
+    printf("Jogador contra Máquina - 2\n");
+    scanf("%d", &opcaoMenu);
+    limpar();
+
+    while(opcaoMenu != 1 && opcaoMenu != 2)
+    {
+        printf("Jogador contra Jogador - 1\n");
+        printf("Jogador contra Máquina - 2\n");
+        scanf("%d", &opcaoMenu);
+        limpar();
+    }
+
+    //JOGADOR CONTRA MAQUINA
+    if(opcaoMenu == 2)
+    {
+        //JOGADOR
+        printf("Digite o nome de jogador: ");
+        scanf(" %[^\n]", jogador[0]);
+        limpar();
+
+        rodadas();
+        scanf("%d", &Jogos);
+        limpar();
+
+        while(Jogos != 1 && Jogos != 3 && Jogos != 5)
+        {
+            rodadas();
+            scanf("%d", &Jogos);
+            limpar();
+        }
+
+        //LOOPING DAS PARTIDAS
+        for(int i = 0; i < Jogos; i++)
+        {
+            //ALTERAR O NOME SEM TER QUE ALTERAR O CODIGO
+            strcpy(jogador[1], "Máquina");
+
+            printf("RODADA - %d\n", contadorR);
+            printf("\n");
+            printf("%s - %d ponto(s)\n", jogador[0], contadorJ1);
+            printf("%s - %d ponto(s)\n", jogador[1], contadorJ2);
+            printf("\n");
+
+            vez(jogador[0],&jogada1);
+
+            while(jogada1 != 1 && jogada1 != 2 && jogada1 != 3)
+            {
+                printf("RODADA - %d\n\n", contadorR);
+
+                printf("%s - %d ponto(s)\n", jogador[0], contadorJ1);
+                printf("%s - %d ponto(s)\n", jogador[1], contadorJ2);
+                printf("\n");
+
+                vez(jogador[0], &jogada1);
+
+            }
+
+            //FAZ COM QUE TODA VEZ Q SEJA EXECUTADO COLETE UM NUMERO DIFERENTE
+            srand(time(NULL));
+
+            //COLETAR NUMERO ALEATORIO ENTRE 1 E 3
+            jogada2 = (rand() % 3) + 1;
+
+            //JOGADOR
+            mostrarJogada(jogador[0], jogada1);
+
+            //MAQUINA
+            mostrarJogada(jogador[1], jogada2);
+
+            contadorR++;
+
+            //CONDIÇÃO PARA O JOGADOR 1 GANHAR,(PEDRA GANHA DA TESOURA, PAPEL GANHA DA PEDRA, TESOURA GANHA DO PAPEL)
+            if(jogada1 == 1 && jogada2 == 3 || jogada1 == 2 && jogada2 == 1 || jogada1 == 3 && jogada2 == 2)
+            {
+                printf("%s é o ganhador(a) desta rodada!\n", jogador[0]);
+                contadorJ1++;
+                getch();
+                limpar();
+            }
+
+            //EMPATE
+            else if(jogada1 == jogada2)
+            {
+                printf("Empate, jogue novamente.\n");
+                i--;
+                getch();
+                limpar();
+            }
+
+            //CONDIÇÃO PARA O JOGADOR 2 GANHAR
+            else
+            {
+                printf("%s foi a ganhadora desta rodada!\n", jogador[1]);
+                contadorJ2++;
+                getch();
+                limpar();
+            }
+
+            //CONDIÇÃO PARA O JOGADOR 1 SER O GANHADOR DA PARTIDA
+            if(Jogos / 2 < contadorJ1)
+            {
+                printf("O ganhador da partida foi %s, com %d ponto(s)!", jogador[0], contadorJ1);
+                break;
+            }
+
+            //CONDIÇÃO PARA O JOGADOR 2 SER O GANHADOR DA PARTIDA
+            else if(Jogos / 2 < contadorJ2)
+            {
+                printf("A ganhadora da partida foi a %s, com %d ponto(s)!", jogador[1], contadorJ2);
+                break;
+            }
+        }
+    }
+    //JOGADOR CONTRA JOGADOR
+    else if(opcaoMenu == 1)
+    {
+        //JOGADOR 1
+        printf("Digite o nome do jogador 1: ");
+        scanf(" %[^\n]", jogador[0]);
+        limpar();
+
+        //JOGADOR 2
+        printf("Digite o nome do jogador 2: ");
+        scanf(" %[^\n]", jogador[1]);
+        limpar();
+
+        //QUANTIDADE DE RODADAS
+        rodadas();
+        scanf("%d", &Jogos);
+        limpar();
+
+        while(Jogos != 1 && Jogos != 3 && Jogos != 5)
+        {
+            rodadas();
+            scanf("%d", &Jogos);
+            limpar();
+        }
+
+        //LOOPING DAS PARTIDAS
+        for(int i = 1; i <= Jogos; i++)
+        {
+            printf("RODADA - %d\n", contadorR);
+            printf("\n");
+
+            //CONTADOR DE PONTOS GANHOS POR USUARIO
+            printf("%s - %d ponto(s)\n", jogador[0], contadorJ1);
+            printf("%s - %d ponto(s)\n", jogador[1], contadorJ2);
+            printf("\n");
+
+            //VEZ DO JOGADOR 1
+            vez(jogador[0], &jogada1);
+
+            while(jogada1 != 1 && jogada1 != 2 && jogada1 != 3)
+            {
+                printf("RODADA - %d\n\n", contadorR);
+
+                printf("%s - %d ponto(s)\n", jogador[0], contadorJ1);
+                printf("%s - %d ponto(s)\n", jogador[1], contadorJ2);
+                printf("\n");
+
+                vez(jogador[0], &jogada1);
+
+            }
+
+            printf("RODADA - %d\n", contadorR);
+            printf("\n");
+
+            printf("%s - %d ponto(s)\n", jogador[0], contadorJ1);
+            printf("%s - %d ponto(s)\n", jogador[1], contadorJ2);
+            printf("\n");
+
+            //VEZ DO JOGADOR 2
+            vez(jogador[1], &jogada2);
+
+            while(jogada2 != 1 && jogada2 != 2 && jogada2 != 3)
+            {
+                printf("RODADA - %d\n\n", contadorR);
+
+                printf("%s - %d ponto(s)\n", jogador[0], contadorJ1);
+                printf("%s - %d ponto(s)\n", jogador[1], contadorJ2);
+                printf("\n");
+
+                vez(jogador[1], &jogada2);
+            }
+
+            mostrarJogada(jogador[0], jogada1); //mostrar jogada do jogador 1
+            mostrarJogada(jogador[1], jogada2); //mostrar jogada do jogador 2
+
+            contadorR++;
+
+            //CONDIÇÃO PARA O JOGADOR 1 GANHAR, (PEDRA GANHA DA TESOURA, PAPEL GANHA DA PEDRA, TESOURA GANHA DO PAPEL)
+            if(jogada1 == 1 && jogada2 == 3 || jogada1 == 2 && jogada2 == 1 || jogada1 == 3 && jogada2 == 2)
+            {
+                printf("%s é o ganhador(a) desta rodada!\n", jogador[0]);
+                contadorJ1++;
+                getch();
+                limpar();
+            }
+
+            //EMPATE
+            else if(jogada1 == jogada2)
+            {
+                printf("Empate, jogue novamente.\n");
+                i--;
+                getch();
+                limpar();
+            }
+
+            //CONDIÇÃO PARA O JOGADOR 2 GANHAR
+            else
+            {
+                printf("%s é o ganhador(a) desta rodada!\n", jogador[1]);
+                contadorJ2++;
+                getch();
+                limpar();
+            }
+
+            //CONDIÇÃO PARA O JOGADOR 1 SER O GANHADOR DA PARTIDA
+            if(Jogos / 2 < contadorJ1)
+            {
+                printf("O ganhador da partida foi %s, com %d ponto(s)!", jogador[0], contadorJ1);
+                break;
+            }
+
+            //CONDIÇÃO PARA O JOGADOR 2 SER O GANHADOR DA PARTIDA
+            else if(Jogos / 2 < contadorJ2)
+            {
+                printf("O ganhador da partida foi %s, com %d ponto(s)!", jogador[1], contadorJ2);
+                break;
+            }
+        }
+    }
+}
+
+//FUNÇÃO PARA LIMPAR A TELA
+void limpar()
+{
+    system("cls || clear");
+}
+
+void pedra()
+{
+    printf("    _______\n");
+    printf("---'   ____)\n");
+    printf("      (_____)\n");
+    printf("      (_____)\n");
+    printf("      (____)\n");
+    printf("---.__(___)\n");
+    printf("\n");
+}
+
+void papel()
+{
+    printf("    _______\n");
+    printf("---'   ____)____\n");
+    printf("          ______)\n");
+    printf("          _______)\n");
+    printf("         _______)\n");
+    printf("---.__________)\n");
+    printf("\n");
+}
+
+void tesoura()
+{
+    printf("    _______\n");
+    printf("---'   ____)____\n");
+    printf("          ______)\n");
+    printf("       __________)\n");
+    printf("      (____)\n");
+    printf("---.__(___)\n");
+    printf("\n");
+}
+
+//FUNÇÃO PARA O JOGADOR FAZER AS ESCOLHAS
+void escolhas()
+{
+    printf("Escolha uma jogada:\n");
+    printf("Pedra --- 1\n");
+    printf("Papel --- 2\n");
+    printf("Tesoura - 3\n");
+}
+
+//FUNÇÃO PARA O JOGADOR ESCOLHER A QUANTIDADE DE RODADAS
+void rodadas()
+{
+    printf("Escolha um tipo de partida:\n");
+
+    printf("Melhor de 1:\n");
+    printf("Melhor de 3:\n");
+    printf("Melhor de 5:\n");
+}
+
+//USAMOS O PONTEIRO PARA CONSEGUIR ALOCAR O VALOR DE "A" EM "JOGADA1"
+void vez(char *jogador, int *a)
+{
+        //VEZ DO JOGADOR
+        escolhas();
+        printf("\n%s faça sua jogada: ", jogador);
+        scanf("%d", a);
+        limpar();
+}
+
+//MOSTRAR AS JOGADAS DOS PARTICIPANTES
+void mostrarJogada(char *jogador, int jogada)
+{
+    printf("%s jogou ", jogador);
+    switch (jogada)
+    {
+    case 1:
+        printf("Pedra\n");
+        pedra();
+        break;
+    case 2:
+        printf("Papel\n");
+        papel();
+        break;
+    case 3:
+        printf("Tesoura\n");
+        tesoura();
+        break;
+    default:
+        printf("Empate");
+    }
+    getch();
+    return 0;
+}
