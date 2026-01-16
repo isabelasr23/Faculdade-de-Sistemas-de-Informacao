@@ -1,0 +1,37 @@
+1)Cite 3 tags fundamentais do html
+    1- <html>
+    2- <head>
+    3- <body>
+
+2)Quais tipos de listas existem no html?
+    1-Lista não ordenada <ul>
+    2-Lista ordenada <ol>
+
+3)HTML é uma linguagem de programação? Explique.
+	R: Não, pois ele é uma linguagem de marcação, 
+
+4)Foi solicitado que você altere o título da página. Qual tag devemos 
+utilizar dentro do <head>?
+	R:<title>
+
+6)Cite 2 tipos (input type=””) adicionados no HTML 5:
+	R: "email" e "date"
+
+7)Quais principais diferenças podemos apontar entre HTML 4 e HTML 5?
+	R: Suporte a novos tipos de elementos, novos tipos de input etc
+
+8)Qual a utilidade do DOCTYPE.
+	R: O <!DOCTYPE> é usado para definir o tipo de documento e a versão do HTML que está sendo utilizada.
+
+9)Os cabeçalhos podem ir de <h1> até <h?>. Qual diferença?
+	R: De <h1> até <h6>, eles tem diferenças de tamanho e de importância na hierarquia
+
+10)Conteúdos como <p>, <img> devem ser inseridos no <head> ou <body>? Explique.
+	R: qualquer conteúdo que deve ser exibido ao usuário, como texto e imagens, deve ser colocado no <body>.
+
+11) Podemos enviar 2 tipos de métodos (Verbos HTTP) no form (<form method=”?”>). Cite os 2 tipos e explique as diferenças.
+	R: <form method=”GET”>: é adequado para recuperação de dados e não altera o estado do servidor.
+	<form method=”POST”>: é adequado para envio de dados confidenciais e alteração de dados no servidor.
+
+
+
