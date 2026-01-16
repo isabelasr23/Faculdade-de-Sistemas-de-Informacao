@@ -8,6 +8,7 @@ Neste período, foram desenvolvidas **atividades práticas e listas de exercíci
 ## 🗂️ Organização
 
 Os arquivos estão organizados em listas e provas:
+
 📂 2-periodo
 ┣ 📂 listas
 ┃ ┣ 📂 lista-1
