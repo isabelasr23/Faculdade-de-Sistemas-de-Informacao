@@ -1,0 +1,121 @@
+/*Crie uma calculadora utilizando funções
+a. Obrigatoriamente você deve ter funções: somar; subtrair; multiplicar e dividir
+i. Todas recebem 2 números como parâmetro de entrada*/
+
+
+import java.util.Scanner;
+
+public class Teste {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double numero1, numero2;
+        int operacao;
+        String escolha;
+
+        do {
+
+            System.out.print("\nDigite o primeiro numero: ");
+            numero1 = scanner.nextDouble();
+            System.out.print("Digite o segundo numero: ");
+            numero2 = scanner.nextDouble();
+
+            operacao = operacaoDesejada();
+            calcular(numero1,numero2,operacao);
+
+
+
+            System.out.println("""
+                    
+                    DESEJA FAZER UMA NOVA OPERAÇAO?
+                    S- SIM
+                    N- NÃO""");
+            escolha = sairOuContinuar();
+
+            if (escolha.equals("N")){
+                return;
+            }
+        } while (true);
+
+
+    }
+
+    public static void calcular( double numero1, double numero2, int operacao){
+        if (operacao == 1){1
+            subtracao(numero1,numero2);
+        }else if (operacao == 3){
+            multiplicacao(numero1,numero2);
+        }else if (operacao == 4){
+            divisao(numero1,numero2);
+        }
+    }
+
+    public static String sairOuContinuar(){
+        Scanner scanner = new Scanner(System.in);
+        String escolha;
+
+
+        escolha = scanner.nextLine();
+        escolha = escolha.toUpperCase();
+
+        if(escolha.equals("S") || escolha.equals("N")){
+            return escolha;
+        }else {
+            System.out.println("""
+                    OPÇÃO INVALIDA!
+                    DIGITE NOVAMENTE:""");
+            return sairOuContinuar();
+        }
+
+    }
+
+    public static int operacaoDesejada(){
+        Scanner scanner = new Scanner(System.in);
+        int operacao;
+
+        System.out.println("""
+                
+                Qual operação deseja fazer?
+                1-SOMA
+                2-SUBTRAÇÃO
+                3-MULTIPLICAÇÃO
+                4-DIVISÃ0
+                """);
+        operacao = scanner.nextInt();
+
+        if(operacao < 1 || operacao > 4){
+            System.out.println("""
+                    OPÇÃO INVALIDA!
+                    DIGITE NOVAMENTE:""");
+            return operacaoDesejada();
+        }else{
+            return operacao;
+        }
+    }
+
+    //OPERÇÕES MATEMATICAS
+    public static void soma(double numero1, double numero2) {
+        System.out.println("SOMA: " + numero1 + " + " + numero2 + " = " + (numero1 + numero2)+ "\n");
+    }
+
+    public static void subtracao(double numero1, double numero2) {
+        System.out.println("SUBTRAÇÃO: " + numero1 + " - " + numero2 + " = " + (numero1 - numero2)+ "\n");
+    }
+
+    public static void multiplicacao(double numero1, double numero2) {
+        System.out.println("MULTIPLICAÇÃO: " + numero1 + " x " + numero2 + " = " + (numero1 * numero2)+ "\n");
+    }
+
+    public static void divisao(double numero1, double numero2) {
+        if (numero2 == 0){
+            System.out.println("""
+                    Não é possivel fazer divisão por 0
+                    TENTE OUTRO NUMERO
+                    """);
+        }else{
+            System.out.printf("DIVISÃO: %.2f / %.2f  = %.2f %n",numero1, numero2, (numero1 / numero2));
+        }
+    }
+}
+
+

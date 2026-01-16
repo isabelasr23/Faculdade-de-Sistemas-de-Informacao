@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class DesafioExercicio2 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Quantos números você vai dígitar: ");
+        int limite = scanner.nextInt();
+        int numero, menorNumero = 0, maiorNumero = 0, soma = 0;
+
+        for (int i = 1; i <= limite; i++){
+            System.out.print("\nDigite " +i+ " número: ");
+            numero = scanner.nextInt();
+            if(i == 1){
+                menorNumero = numero;
+                maiorNumero = numero;
+            }
+
+            if(numero < menorNumero){
+                menorNumero = numero;
+            }else if(numero > maiorNumero){
+                maiorNumero = numero;
+            }
+
+            soma += numero;
+        }
+        
+        System.out.println("\nO menor número é: " +menorNumero);
+        System.out.println("O maior número é: " +maiorNumero);
+        System.out.println("A soma é igual a: " +soma);
+    }
+}

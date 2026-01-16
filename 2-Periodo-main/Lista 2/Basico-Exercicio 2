@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Exercicio2 {
+    public static void main (String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        int i = 0;
+        System.out.print("Digite um número limite: ");
+        int limite = scanner.nextInt();
+
+        while(i <= limite){
+            System.out.println(i);
+            i++;
+        }
+    }
+}

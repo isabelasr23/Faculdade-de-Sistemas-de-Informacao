@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Exercicio4 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        int nota1, nota2;
+
+        System.out.print("Digite a primeira nota: ");
+        nota1 = scanner.nextInt();
+        System.out.print("Digite a segunda nota:");
+        nota2 = scanner.nextInt();
+
+        int media = (nota1 + nota2)/2;
+
+        if(media == 10){
+            System.out.println("Aprovado com Distinção");
+        }else if(media < 7){
+            System.out.println("Reprovado");
+        }else{
+            System.out.println("Aprovado");
+        }
+    }
+}

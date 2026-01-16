@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+public class DesafioExercicio4 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.print("Qual seu nome? ");
+        String nome = scanner.nextLine();
+        while (nome.length() <= 3){
+            System.out.println("""
+                    Nome tem que ter mais de 3 letras
+                    TENTE NOVAMENTE
+                    
+                    Qual seu nome?""");
+            nome = scanner.nextLine();
+        }
+
+        System.out.print("Quantos anos você tem? ");
+        int idade = scanner.nextInt();
+        while (idade < 0 || idade > 150){
+            System.out.println("""
+                    A sua idade tem que estar entre 0 e 150
+                    TENTE NOVAMENTE
+                    
+                    Quantos anos você tem?""");
+            idade = scanner.nextInt();
+        }
+
+        System.out.print("Quanto você ganha? ");
+        float salario = scanner.nextFloat();
+        while (salario < 0){
+            System.out.println("""
+                    O seu salario tem que ser maior ou igual a 0
+                    TENTE NOVAMENTE
+                    
+                    Quanto você ganha?""");
+            salario = scanner.nextFloat();
+        }
+
+        System.out.println("""
+                Qual seu sexo?
+                F - feminino
+                M - masculino""");
+        char sexo = scanner.next().charAt(0);
+        sexo = Character.toUpperCase(sexo);
+        while (sexo != 'F' && sexo != 'M'){
+            System.out.println("""
+                    Seu sexo tem que ser Feminino ou Masculino
+                    TENTE NOVAMENTE
+                    
+                    Qual seu sexo?
+                    F - feminino
+                    M - masculino""");
+            sexo = scanner.next().charAt(0);
+            sexo = Character.toUpperCase(sexo);
+        }
+
+        System.out.println("""
+                Qual seu Estado Civil?
+                S - solteiro(a)
+                C - casado(a)
+                V - viuvo(a)
+                D - divorciado(a)
+                """);
+        char estadoCivil = scanner.next().charAt(0);
+        estadoCivil = Character.toUpperCase(estadoCivil);
+        while (estadoCivil != 'S' && estadoCivil != 'C' && estadoCivil != 'V' && estadoCivil != 'D'){
+            System.out.println("""
+                    O Estado Civil tem que estar entre os listados acima
+                    TENTE NOVAMENTE
+                    
+                    Qual seu Estado Civil?
+                    S - solteiro(a)
+                    C - casado(a)
+                    V - viuvo(a)
+                    D - divorciado(a)""");
+            estadoCivil = scanner.next().charAt(0);
+            estadoCivil = Character.toUpperCase(estadoCivil);
+        }
+
+        System.out.println("Nome: " +nome+
+                "\nIdade: " +idade+
+                "\nSalario: " +salario+
+                "\nSexo: " +sexo+
+                "\nEstado Civil: " +estadoCivil);
+    }
+}

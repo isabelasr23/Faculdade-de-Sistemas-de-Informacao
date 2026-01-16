@@ -1,0 +1,44 @@
+/* Crie uma função que receba uma lista de números e retorne a média */
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Questao11 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        List<Double> numeros = new ArrayList<>();
+
+        int tamanho;
+
+        do {
+             System.out.print("Digite a quantidade de numeros que vai ter na lista: ");
+             tamanho = scanner.nextInt();
+
+             if (tamanho <= 0){
+                 System.out.println("Digite um numero positivo maior que 0\n");
+             }
+        }while (tamanho <=0 );
+
+
+        for (int i = 0; i < tamanho; i++ ){
+            System.out.print("Digite a "+(i +1)+ " numero: ");
+            double numero = scanner.nextInt();
+            numeros.add(numero);
+        }
+
+        Double resultado = somaDaLista(numeros, 0) / tamanho;
+
+        System.out.printf("A média das numeros da lista é: %.2f", resultado);
+    }
+
+    public static double somaDaLista(List<Double> lista, int i){
+        System.out.println("A "+i);
+        if (i == lista.size()){
+            return 0;
+        }else {
+            System.out.println("B "+i+"\n");
+            return (lista.get(i) + somaDaLista(lista, i + 1));
+        }
+    }
+}

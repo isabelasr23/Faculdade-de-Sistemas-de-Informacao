@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class Av2 {
+    public static void main(String[] args){
+
+        Scanner scanner = new Scanner(System.in);
+
+        while(true){
+            double numero1, numero2, resultado;
+            int operacao;
+
+            System.out.print("Digite o primeiro numero: ");
+            numero1 = scanner.nextDouble();
+
+            System.out.print("Digite o segundo numero: ");
+            numero2 = scanner.nextDouble();
+
+            System.out.println(""" 
+                
+                Qual operação deseja fazer?
+                1-SOMA
+                2-SUBTRAÇÃO
+                3-MULTIPLICAÇÃO
+                4-DIVISÃO
+                """);
+            operacao = scanner.nextInt();
+
+            while (operacao < 1 || operacao >4){
+                System.out.print("""
+                        OPERAÇÃO INVALIDA!
+                        Digite novamente a opção desejada: 
+                        """);
+                operacao = scanner.nextInt();
+            }
+
+            if(operacao == 1){
+                System.out.println("SOMA\n");
+                resultado = numero1 + numero2;
+                System.out.printf("%.2f + %.2f = %.2f \n", numero1, numero2, resultado);
+            }else if (operacao == 2){
+                System.out.println("SUBTRAÇÃO\n");
+                resultado = numero1 - numero2;
+                System.out.printf("%.2f - %.2f = %.2f \n",  numero1, numero2, resultado);
+            }else if (operacao == 3){
+                System.out.println("MULTIPLICAÇÃO\n");
+                resultado = numero1 * numero2;
+                System.out.printf("%.2f X %.2f = %.2f \n",  numero1, numero2, resultado);
+            } else if (operacao == 4){
+                System.out.println("DIVISÃO\n");
+                resultado = numero1 / numero2;
+                System.out.printf("%.2f / %.2f = %.2f \n",  numero1, numero2, resultado);
+            }
+
+            System.out.println("""
+                    
+                    Deseja fazer uma nova operação? 
+                    1-SIM
+                    2-NÃO                   
+                    """);
+
+            operacao = scanner.nextInt();
+
+            while (operacao!= 1 && operacao != 2){
+                System.out.println("""
+                        OPÇÃO INVALIDA!
+                        Digite novamente a opção desejada:
+                        """);
+                operacao = scanner.nextInt();
+            }
+            if (operacao == 2){
+                return;
+            }
+        }
+    }
+}

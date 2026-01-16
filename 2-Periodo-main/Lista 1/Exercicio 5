@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Exercicio5 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        int numero1, numero2, numero3;
+
+        System.out.print("Digite o primeiro numero: ");
+        numero1 = scanner.nextInt();
+        System.out.print("Digite o segundo numero: ");
+        numero2 = scanner.nextInt();
+        System.out.print("Digite o terceiro numero: ");
+        numero3 = scanner.nextInt();
+
+        if((numero1 > numero2) && (numero2 > numero3)){
+            System.out.println("O maior numero é " + numero1);
+        }else if ((numero3 > numero2) && (numero2 > numero1)){
+            System.out.println("O maior numero é " + numero3);
+        }else{
+            System.out.println("O maior numero é " + numero2);
+        }
+    }
+}

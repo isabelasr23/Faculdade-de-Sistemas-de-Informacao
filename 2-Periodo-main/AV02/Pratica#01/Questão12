@@ -1,0 +1,48 @@
+/*Crie uma função que converta uma temperatura de Celsius para Fahrenheit e vice-versa.*/
+
+import java.util.Scanner;
+
+public class Questao12 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        int opcao;
+
+        do {
+            System.out.println("""
+                Que tipo de temperatura voce vai digitar?
+                1-Celsius
+                2-Fahrenheit
+                """);
+            opcao = scanner.nextInt();
+
+            if (opcao < 1 || opcao > 2){
+                System.out.println("OPÇÃO INVALIDA! \nDigite novamente");
+            }
+
+        }while(opcao < 1 || opcao > 2);
+
+
+        System.out.print("Agora digite a temperatura: ");
+        double temperatura = scanner.nextInt();
+
+        double resultado = conversao(temperatura, opcao);
+
+        if (opcao == 1){
+            System.out.printf("O resultado da conversão de Celsius para Fahrenheit é %.2f", resultado);
+        }else {
+            System.out.printf("O resultado da conversão de Fahrenheit para Celsius é %.2f", resultado);
+        }
+
+    }
+
+    public static double conversao(double temperatura, int opcao){
+
+        if (opcao == 1){
+            return (temperatura *  9 / 5) + 32 ;
+        }else {
+            return ((temperatura - 32) * 5 / 9);
+        }
+
+    }
+}

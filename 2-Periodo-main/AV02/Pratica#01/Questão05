@@ -1,0 +1,78 @@
+/*Em outra pasta, crie um arquivo: 
+controlador_usuario que contém a função:
+- autenticar recebendo como parâmetro login e senha
+- Dentro dessa função temos uma lista de dicionários com:
+- Verifique se o login e senha enviado é compatível com algum desses*/
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class controlador_usuario {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String login = " ", senha = " " ;
+
+        do{
+            autenticar(login, senha);
+
+            System.out.println("BEM VINDO!\n");
+            System.out.println("1-SAIR");
+
+            int escolha = 0;
+            while (escolha != 1){
+                escolha = scanner.nextInt();
+            }
+
+            return;
+        }while(true);
+    }
+
+    public static String pegarLogin( ){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite seu login: \n");
+        return scanner.nextLine();
+    }
+    public static String pegarSenha(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite sua senha: \n");
+        return scanner.nextLine();
+    }
+
+
+    public static void autenticar(String login, String senha){
+        Map<String, String> usuarios = new HashMap<>();
+
+        usuarios.put("teste", "admin");
+        usuarios.put("teste2", "admin2");
+        usuarios.put("teste3", "admin3");
+        usuarios.put("teste4", "admin4");
+
+        do {
+            login = pegarLogin();
+
+            if(!(usuarios.containsKey(login))){
+                System.out.println("Usuario não encontrado\n");
+            }
+
+        }while(!(usuarios.containsKey(login)));
+
+        String senhaCorreta = usuarios.get(login);
+
+        do{
+            senha = pegarSenha();
+
+            if(!(senhaCorreta.equals(senha))){
+                System.out.println("Senha incorreta!\n");
+            }
+
+        }while (!(senhaCorreta.equals(senha)));
+
+        System.out.println("Login bem-sucedido!\n");
+
+    }
+}
