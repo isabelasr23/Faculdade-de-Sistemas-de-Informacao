@@ -1,0 +1,27 @@
+/*Escreva uma função que receba um número e retorne True se ele for primo e
+False caso contrário.*/
+
+import java.util.Scanner;
+
+public class Questao8 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um numero: ");
+        int numero = scanner.nextInt();
+        
+        System.out.println(primo(numero, 2));
+    }
+
+    public static boolean primo(int numero, int i){
+        if (numero <= 1) {
+            return false;
+        }else if (numero == i) {
+            return true;
+        }else if (numero % i == 0) {
+            return false;
+        }
+
+        return primo(numero, ++i);
+    }
+}

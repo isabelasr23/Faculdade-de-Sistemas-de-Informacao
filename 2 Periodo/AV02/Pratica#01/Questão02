@@ -1,0 +1,26 @@
+/*Escreva uma função que informe a quantidade de dígitos de um determinado número inteiro informado.*/
+
+import java.util.Scanner;
+
+public class Questao2{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um numero: ");
+
+        double numero = scanner.nextDouble();
+        int digitos = 0;
+
+        System.out.print("Esse numero tem : "+Digitos(numero, digitos)+ "digitos");
+    }
+
+    public static double Digitos(double numero, int digito ){
+        double divisao = numero/10;
+        digito++;
+        if (divisao >= 1){
+            return Digitos(divisao, digito);
+        }else{
+            return digito;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class Jogo {
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "post";
+    private static Connection conn;
+
+    public static void conectar() {
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conexão bem-sucedida!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar: " + e.getMessage());
+        }
+    }
+
+    public static void JogosPorString(String jogo) {
+        String sql = "SELECT titulo, subtitulo FROM jogos.games WHERE titulo ILIKE ? OR subtitulo ILIKE ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, "%" + jogo + "%");
+            stmt.setString(2, "%" + jogo + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("Jogos que contém a palavra '" + jogo + "':");
+            while (rs.next()) {
+                System.out.println("Título: " + rs.getString("titulo") + ", Subtítulo: " + rs.getString("subtitulo"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar jogos: " + e.getMessage());
+        }
+    }
+
+    public static void JogosEmOrdem() {
+        String sql = "SELECT titulo, subtitulo FROM jogos.games ORDER BY titulo ASC";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("Jogos em ordem crescente pelo título:");
+            while (rs.next()) {
+                System.out.println("Título: " + rs.getString("titulo") + ", Subtítulo: " + rs.getString("subtitulo"));
+            }
+        } catch (SQLException e) {
+            System.out.println("ERRO" + e.getMessage());
+        }
+    }
+
+    public static void JogosComK() {
+        String sql = "SELECT titulo, subtitulo FROM jogos.games WHERE titulo ILIKE '%k%' OR subtitulo ILIKE '%k%'";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("Jogos que contém a letra 'k' no título ou no subtítulo:");
+            while (rs.next()) {
+                System.out.println("Título: " + rs.getString("titulo") + ", Subtítulo: " + rs.getString("subtitulo"));
+            }
+        } catch (SQLException e) {
+            System.out.println("ERRO" + e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        conectar();
+
+        System.out.print("Digite uma jogo para buscar jogos: ");
+        String search = scanner.nextLine();
+        JogosPorString(search);
+        JogosEmOrdem();
+        JogosComK();
+
+        scanner.close();
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("ERRO" + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Exercicio3 {
+    public static void main(String [] args){
+        Scanner scanner =  new Scanner(System.in);
+
+        int numero1, numero2;
+        int formula;
+        char resposta = 'S';
+
+        System.out.println("Operação - Adição!\n");
+
+        while(resposta == 'S'){
+
+            System.out.print("Digite um número: ");
+            numero1 = scanner.nextInt();
+            System.out.print("Digite outro número: ");
+            numero2 = scanner.nextInt();
+
+            formula = numero1 + numero2;
+            System.out.println(numero1+ " + "+numero2+ " = " +formula);
+
+            System.out.print("\nDeseja realizar mais uma soma? [S ou N]\n" +
+                    "resposta: ");
+            resposta = scanner.next().charAt(0);
+            resposta = Character.toUpperCase(resposta);
+
+            if(resposta == 'N'){
+                return;
+            }
+        }
+    }
+}
