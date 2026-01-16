@@ -1,0 +1,32 @@
+/* Crie uma função que receba um email e retorna se ele possui ‘@’
+○ Desafio: Para aprimorar pesquise sobre regex e retorne se o e-mail é válid*/
+
+import java.util.Scanner;
+import java.util.regex.*;
+
+public class Questao13 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        String email;
+
+        System.out.print("Digite seu e-mail: ");
+        email = scanner.nextLine();
+
+        identificarCaractereR(email);
+    }
+
+
+    public static void identificarCaractereR(String email){
+        String padrao = "@";
+
+        Pattern pattern = Pattern.compile(padrao);
+        Matcher matcher = pattern.matcher(email);
+
+        if (matcher.find()) {
+            System.out.println("O email possui " + matcher.group());
+        } else {
+            System.out.println("O email não possui @");
+        }
+    }
+}
