@@ -1,4 +1,5 @@
 # 📘 Período 2 – Programação em Java
+# 2º Semestre de 2024
 
 Neste período, foram desenvolvidas **atividades práticas e listas de exercícios** com foco no aprendizado da linguagem **Java** e no fortalecimento da lógica de programação.
 
