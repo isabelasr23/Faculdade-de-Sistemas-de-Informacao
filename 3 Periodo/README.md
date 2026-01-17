@@ -1,4 +1,5 @@
 # 📘 Período 3 – Desenvolvimento Web (HTML e CSS)
+# 1º Semestre de 2025
 
 Neste período, foram desenvolvidas **listas de exercícios** e um **projeto prático de site portfólio**, com foco na introdução ao desenvolvimento web utilizando **HTML e CSS**.
 
