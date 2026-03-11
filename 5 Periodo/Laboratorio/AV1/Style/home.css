@@ -1,4 +1,4 @@
-/* Reset para garantir que o navegador não adicione espaços indesejados */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@ body {
     background-color: #2A2A2A;
     color: #fff;
     font-family: 'Poppins', sans-serif;
-    padding: 32px; /* Margem fixa de 32px em toda a tela */
+    padding: 32px;
     min-height: 100vh;
 }
 
