@@ -1,0 +1,189 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #2A2A2A;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    background-color: #2ECC71;
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 32px 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    margin-left: 32px;
+    margin-right: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.texto-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 32px;
+    margin-left: 32px;
+    margin-right: 32px;
+    color: #FFF;
+}
+
+.texto-top h1 {
+    text-align: left;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.texto-top p {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.input-usuario, .input-email, .input-password {
+    display: flex;
+    width: 338px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 36px;
+}
+
+label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #2ECC71;
+}
+
+input {
+    display: flex;
+    height: 28px;
+    width: 312px;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(120, 120, 128, 0.224);
+    background: #FFF;
+}
+
+
+/* BOTÕES */
+
+.botoes{
+display:flex;
+justify-content:space-between;
+width: 338px;
+}
+
+button{
+
+width: 60px;
+height:60px;
+
+border:none;
+border-radius:30px;
+
+background:#2ECC71;
+color:white;
+
+font-size:16px;
+font-weight:600;
+
+cursor:pointer;
+
+margin-bottom:12px;
+
+}
+
+button[type="submit"] {
+    width: auto;
+    height: 60px;
+    padding: 0 16px;
+    background-color: #FF9500;
+}
+
+
+
+/* ETAPAS */
+
+.step{
+display:none;
+}
+
+.step.active{
+display:block;
+}
+
+
+
+/* OPÇÕES RADIO */
+
+.opcoes{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+margin-bottom:24px;
+
+}
+
+
+.opcao input{
+
+display:none;
+
+}
+
+
+.opcao span{
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+width: 338px;
+height:48px;
+
+border-radius:16px;
+
+border:1px solid rgba(255,255,255,0.3);
+
+color:white;
+
+cursor:pointer;
+
+transition:0.2s;
+
+}
+
+
+.opcao span:hover{
+
+border-color:#2ECC71;
+
+}
+
+
+.opcao input:checked + span{
+
+background:#2ECC71;
+border-color:#2ECC71;
+
+}
